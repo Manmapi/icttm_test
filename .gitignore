@@ -1,8 +1,8 @@
 .env
 data-raw
-jars
 result.*
 .idea*
 data.zip
+jars
 venv
 *.pyc
