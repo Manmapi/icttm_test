@@ -1,0 +1,11 @@
+jupyter
+chromedriver-binary==122.0.6261.69
+boto3
+selenium
+pyspark==3.2.4
+delta-spark
+python-dotenv
+aws-hadoop
+fsspec
+s3fs
+pandas

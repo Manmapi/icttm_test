@@ -1,0 +1,8 @@
+.env
+data-raw
+jars
+result.*
+.idea*
+data.zip
+venv
+*.pyc
