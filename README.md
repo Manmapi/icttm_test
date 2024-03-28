@@ -1,35 +1,25 @@
-# I - Requirements:
+# I - Why choosing start Jupyter Notebook in Docker:
+I start working on Window OS and counter some problems with Spark and Hadoop as well as S3A.
+I can solve these problems on my own computer, however this not ensure it can work on all computer. 
 
-1/ Run the docker-compose.mino.yml file to start Minio. Additional instructions can be found here: https://min.io/docs/minio/kubernetes/upstream/ (Alternatively, you can use a different method to start Minio).
+To solve this, I choose to dockerize to make sure it can run on different scenarios.
+# II - Start Minio and Jupyter notebook:
+1/ First of all, copy .env.example to .env. 
 
-2/ After successfully starting Minio, navigate inside and create a bucket named "data". Then, generate access and secret keys for yourself.
+2/ Run the docker-compose.yml file to start MinIO with command 
 
-3/ Code should be written in the two pre-configured files: download.ipynb, transform.ipynb.
+    docker compose up
 
-4/ Write code: Use Selenium to download the file from the following link (the code should be written in the download.ipynb file): https://drive.google.com/drive/folders/1EImvKyUQ_iJCfd2h-Dxjn_sqPyDV5tFC?usp=sharing
+3/ After successfully starting Minio, navigate inside and create a bucket named "data". Then, generate access and secret keys for yourself. Then update given key pair to .env file.
 
-Note: We prefer not to download and store chromedriver within our source code. Therefore, please find a suitable library to achieve this.
+4/ Down all service with command `docker compose down` then start again with `docker compose up`
 
-5/ Write code: Unzip the .zip file. Then, upload all files to the "data-raw" folder on Minio that you just created.
+5/ Now, in backend service logs, use will see a link to Jupyter notebook as `http:127.0.0.1:8000/lab?token=....`. Follow
+this link to access Jupyter lab.
 
-6/ Write code: Use Spark to connect to Minio to read the data. (I'll provide you with some hints in file transform.ipynb).
+6/ In here, run all code section in download.ipynb and transform.ipynb sequentially.
 
-7/ Write code: Use Spark to merge the files data.json, data2.json, data3.json into a single file named result.json => Then, upload it to the "data-result" folder on Minio.
-
-8/ Write code: Then, use Spark to read the result.json file => Display the data => You might have some duplicate data, please remove them => Display the data again after processing (Please retain the key steps you used to derive the final result).
-
-9/ Check your results. Before eliminating duplicates it will be 19 and after duplicates will it be equal to 18? The final result is the csv file uploaded to minio or not and can the csv file be read or not.
-
-
-# II. Evaluation Criteria:
-
-1/ Ability to comprehend requirements.
-2/ Self-learning capability.
-3/ Accuracy of code functionality.
-4/ Conformity of results to our expectations.
-5/ Readability of the code and presence of comments explaining its functionalities.
-
+7/ Now, as expected, we can see data-result as well as data-raw in MinIO buckets.
 # III - Suggestions
-Maybe you will need to install this to using spark:
-
-sudo apt-get install default-jdk python3-venv s3fs
+If you counter any problem when running this test, please contact me through gmail: `duytran060501@gmail.com`
+ 
